@@ -1,4 +1,5 @@
 import com.opencsv.bean.CsvBindByName;
+
 public class IPLMostRunsCSV {
 
     @CsvBindByName(column = "PLAYER", required = true)
@@ -6,5 +7,8 @@ public class IPLMostRunsCSV {
 
     @CsvBindByName(column = "Avg", required = true)
     public double average;
+
+    @CsvBindByName(column = "SR", required = true)
+    public double strikingRates;
 
 }

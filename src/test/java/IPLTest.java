@@ -17,11 +17,16 @@ public class IPLTest {
     }
 
     @Test
-    public void givenIplCSVFile_ShouldReturnTopBattingAverages() throws IOException {
+    public void givenIplCSVFile_ShouldReturn_BatsmanHavingTopBattingAverages() throws IOException {
         String numOfRecords = iplAnalyser.analyseIPLData(SortField.AVG, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
         IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
         Assert.assertEquals("MS Dhoni", censusCSV[0].player);
     }
-
+    @Test
+    public void givenIplCSVFile_ShouldReturn_BatsmenHavingTopStrikingRates() throws IOException {
+        String numOfRecords = iplAnalyser.analyseIPLData(SortField.STRIKINGRATES, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
+        Assert.assertEquals("Ishant Sharma", censusCSV[0].player);
+    }
 
 }

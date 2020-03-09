@@ -13,6 +13,7 @@ public class IPLAnalyser {
     public IPLAnalyser() {
         this.sortMap = new HashMap<>();
         this.sortMap.put(SortField.AVG, Comparator.comparing(iplData -> iplData.average));
+        this.sortMap.put(SortField.STRIKINGRATES, Comparator.comparing(iplData -> iplData.strikingRates));
     }
 
     public String analyseIPLData(SortField sortField, String csvFilePath) throws IOException {
