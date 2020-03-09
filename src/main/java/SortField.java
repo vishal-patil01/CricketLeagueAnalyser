@@ -1,3 +1,3 @@
 public enum SortField {
-    STRIKINGRATES, AVG
+    STRIKINGRATES, AVG,SIXFOURS
 }
