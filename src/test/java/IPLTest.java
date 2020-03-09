@@ -34,5 +34,10 @@ public class IPLTest {
         IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
         Assert.assertEquals("Andre Russell", censusCSV[0].player);
     }
-
+    @Test
+    public void givenIplCSVFile_ShouldReturn_BatsmenWhoHaveMaximumStrikingRateWithSixFour() throws IOException {
+        String numOfRecords = iplAnalyser.analyseIPLData(SortField.SIXFOURS, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
+        Assert.assertEquals("Andre Russell", censusCSV[0].player);
+    }
 }
