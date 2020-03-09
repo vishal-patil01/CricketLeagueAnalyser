@@ -36,8 +36,14 @@ public class IPLTest {
     }
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenWhoHaveMaximumStrikingRateWithSixFour() throws IOException {
-        String numOfRecords = iplAnalyser.analyseIPLData(SortField.SIXFOURS, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        String numOfRecords = iplAnalyser.analyseIPLData(SortField.SIXFOURSAVG, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
         IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
         Assert.assertEquals("Andre Russell", censusCSV[0].player);
+    }
+    @Test
+    public void givenIplCSVFile_ShouldReturn_BatsmenWhoHaveBestAvgAndStrikeRates() throws IOException {
+        String numOfRecords = iplAnalyser.analyseIPLData(SortField.AVGWITHSTRIKERATE, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        IPLMostRunsCSV[] censusCSV = new Gson().fromJson(numOfRecords, IPLMostRunsCSV[].class);
+        Assert.assertEquals("MS Dhoni", censusCSV[0].player);
     }
 }

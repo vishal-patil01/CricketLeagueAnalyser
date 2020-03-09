@@ -1,21 +1,27 @@
 import com.google.gson.Gson;
 
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class IPLAnalyser {
     Map<SortField, Comparator<IPLMostRunsCSV>> sortMap;
 
+
     public IPLAnalyser() {
         this.sortMap = new HashMap<>();
+
         this.sortMap.put(SortField.AVG, Comparator.comparing(iplData -> iplData.average));
+
         this.sortMap.put(SortField.STRIKINGRATES, Comparator.comparing(iplData -> iplData.strikingRates));
+
         this.sortMap.put(SortField.SIXFOURS, Comparator.comparing(iplData -> iplData.sixs + iplData.fours));
 
+        Comparator<IPLMostRunsCSV> sixFourWithAvg = Comparator.comparing(iplData -> iplData.sixs + iplData.fours);
+        this.sortMap.put(SortField.SIXFOURSAVG, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
+
+        Comparator<IPLMostRunsCSV> avgWithStrikingRates = Comparator.comparing(iplData -> iplData.average);
+        this.sortMap.put(SortField.AVGWITHSTRIKERATE, avgWithStrikingRates.thenComparing(iplData -> iplData.strikingRates));
     }
 
     public String analyseIPLData(SortField sortField, String csvFilePath) throws IOException {
