@@ -18,10 +18,14 @@ public class IPLAnalyser {
         this.sortMap.put(SortField.SIXFOURS, Comparator.comparing(iplData -> iplData.sixs + iplData.fours));
 
         Comparator<IPLMostRunsCSV> sixFourWithAvg = Comparator.comparing(iplData -> iplData.sixs + iplData.fours);
-        this.sortMap.put(SortField.SIXFOURSAVG, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
+        this.sortMap.put(SortField.SIXFOUR_WITHAVG, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
 
-        Comparator<IPLMostRunsCSV> avgWithStrikingRates = Comparator.comparing(iplData -> iplData.average);
-        this.sortMap.put(SortField.AVGWITHSTRIKERATE, avgWithStrikingRates.thenComparing(iplData -> iplData.strikingRates));
+        Comparator<IPLMostRunsCSV> bestAverageWithStrikeRate = Comparator.comparing(iplData -> iplData.average);
+        this.sortMap.put(SortField.BESTAVERAGE_WITH_STRIKERATE, bestAverageWithStrikeRate.thenComparing(iplData -> iplData.strikingRates));
+
+        Comparator<IPLMostRunsCSV> maxRunsWithBestAverages = Comparator.comparing(iplData -> iplData.runs);
+        this.sortMap.put(SortField.MAXRUNS_WITH_BESTAVERAGES, maxRunsWithBestAverages.thenComparing(iplData -> iplData.average));
+
     }
 
     public String analyseIPLData(SortField sortField, String csvFilePath) throws IOException {
