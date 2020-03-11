@@ -66,10 +66,17 @@ public class IPLTest {
     }
 
     @Test
-    public void givenIplCSVFile_ShouldReturn_TopBowlingAverage() {
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopBowlingAverage() {
         List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
         String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.AVG,cricketersList);
         IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals(166.0, censusCSV[0].average, 0.0);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopStrikingRateOfBowler() {
+        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES,cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Imran Tahir", censusCSV[0].player);
     }
 }
