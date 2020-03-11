@@ -6,6 +6,7 @@ public class IPLDTO {
     public double fours;
     public double strikingRates;
     public double runs;
+    public double economyRate;
 
     public IPLDTO(IPLMostRunsCSV iplFactsCSV) {
         player = iplFactsCSV.player;
@@ -18,5 +19,7 @@ public class IPLDTO {
     public IPLDTO(IPLMostWktsCSV iplFactsCSV) {
         player = iplFactsCSV.player;
         average = iplFactsCSV.average;
+        strikingRates=iplFactsCSV.strikingRates;
+        economyRate=iplFactsCSV.economyRate;
     }
 }

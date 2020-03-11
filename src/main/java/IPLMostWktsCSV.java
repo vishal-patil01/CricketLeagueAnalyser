@@ -7,4 +7,10 @@ public class IPLMostWktsCSV {
 
     @CsvBindByName(column = "Avg", required = true)
     public double average;
+
+    @CsvBindByName(column = "SR", required = true)
+    public double strikingRates;
+
+    @CsvBindByName(column = "Econ", required = true)
+    public double economyRate;
 }

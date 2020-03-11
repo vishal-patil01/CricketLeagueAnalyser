@@ -73,10 +73,17 @@ public class IPLTest {
         Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
     }
     @Test
-    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopStrikingRateOfBowler() {
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopStrikingRate() {
         List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
         String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES,cricketersList);
         IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals("Imran Tahir", censusCSV[0].player);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingBestEconomyRate() {
+        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.ECONOMYRATE,cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Ben Cutting", censusCSV[0].player);
     }
 }

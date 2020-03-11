@@ -30,6 +30,8 @@ public class IPLAnalyser {
         Comparator<IPLDTO> maxRunsWithBestAverages = Comparator.comparing(iplData -> iplData.runs);
         this.sortMap.put(SortField.MAXRUNS_WITH_BESTAVERAGES, maxRunsWithBestAverages.thenComparing(iplData -> iplData.average));
 
+        this.sortMap.put(SortField.ECONOMYRATE, Comparator.comparing(iplData -> iplData.economyRate));
+
     }
 
     public List analyseIPLData(IPLAnalyser.BatsOrBall gameFact, String csvFilePath) {
