@@ -22,7 +22,7 @@ public class IPLAnalyser {
         this.sortMap.put(SortField.SIXFOURS, Comparator.comparing(iplData -> iplData.sixs + iplData.fours));
 
         Comparator<IPLDTO> sixFourWithAvg = Comparator.comparing(iplData -> iplData.sixs + iplData.fours);
-        this.sortMap.put(SortField.SIXFOUR_WITHAVG, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
+        this.sortMap.put(SortField.MAXSTRIKERATE_WITH_SIXFOUR, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
 
         Comparator<IPLDTO> bestAverageWithStrikeRate = Comparator.comparing(iplData -> iplData.average);
         this.sortMap.put(SortField.BESTAVERAGE_WITH_STRIKERATE, bestAverageWithStrikeRate.thenComparing(iplData -> iplData.strikingRates));
@@ -31,6 +31,9 @@ public class IPLAnalyser {
         this.sortMap.put(SortField.MAXRUNS_WITH_BESTAVERAGES, maxRunsWithBestAverages.thenComparing(iplData -> iplData.average));
 
         this.sortMap.put(SortField.ECONOMYRATE, Comparator.comparing(iplData -> iplData.economyRate));
+
+        Comparator<IPLDTO> maxWicketsWithStrikeRate = Comparator.comparing(iplData -> iplData.wicket4 + iplData.wicket5);
+        this.sortMap.put(SortField.MAXWICKETS_WITH_STRIKERATE, maxWicketsWithStrikeRate.thenComparing(iplData -> iplData.strikingRates));
 
     }
 

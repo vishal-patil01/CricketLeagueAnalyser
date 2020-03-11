@@ -7,6 +7,8 @@ public class IPLDTO {
     public double strikingRates;
     public double runs;
     public double economyRate;
+    public double wicket4;
+    public double wicket5;
 
     public IPLDTO(IPLMostRunsCSV iplFactsCSV) {
         player = iplFactsCSV.player;
@@ -21,5 +23,7 @@ public class IPLDTO {
         average = iplFactsCSV.average;
         strikingRates=iplFactsCSV.strikingRates;
         economyRate=iplFactsCSV.economyRate;
+        wicket4=iplFactsCSV.wicket4;
+        wicket5=iplFactsCSV.wicket5;
     }
 }
