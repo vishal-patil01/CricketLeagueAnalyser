@@ -93,4 +93,12 @@ public class IPLTest {
         IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
         Assert.assertEquals("Lasith Malinga", censusCSV[0].player);
     }
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingGreatAvgWithBestStrikeRate() {
+        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.BESTAVERAGE_WITH_STRIKERATE,cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
+
 }
