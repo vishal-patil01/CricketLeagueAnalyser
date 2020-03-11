@@ -1,12 +1,16 @@
+import com.csvparser.CSVBuilderException;
 import com.google.gson.Gson;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class IPLAnalyser {
-    Map<SortField, Comparator<IPLMostRunsCSV>> sortMap;
+    Map<SortField, Comparator<IPLDTO>> sortMap;
 
+    public enum BatsOrBall {BATTING, BALLING}
 
     public IPLAnalyser() {
         this.sortMap = new HashMap<>();
@@ -17,27 +21,28 @@ public class IPLAnalyser {
 
         this.sortMap.put(SortField.SIXFOURS, Comparator.comparing(iplData -> iplData.sixs + iplData.fours));
 
-        Comparator<IPLMostRunsCSV> sixFourWithAvg = Comparator.comparing(iplData -> iplData.sixs + iplData.fours);
+        Comparator<IPLDTO> sixFourWithAvg = Comparator.comparing(iplData -> iplData.sixs + iplData.fours);
         this.sortMap.put(SortField.SIXFOUR_WITHAVG, sixFourWithAvg.thenComparing(iplData -> iplData.strikingRates));
 
-        Comparator<IPLMostRunsCSV> bestAverageWithStrikeRate = Comparator.comparing(iplData -> iplData.average);
+        Comparator<IPLDTO> bestAverageWithStrikeRate = Comparator.comparing(iplData -> iplData.average);
         this.sortMap.put(SortField.BESTAVERAGE_WITH_STRIKERATE, bestAverageWithStrikeRate.thenComparing(iplData -> iplData.strikingRates));
 
-        Comparator<IPLMostRunsCSV> maxRunsWithBestAverages = Comparator.comparing(iplData -> iplData.runs);
+        Comparator<IPLDTO> maxRunsWithBestAverages = Comparator.comparing(iplData -> iplData.runs);
         this.sortMap.put(SortField.MAXRUNS_WITH_BESTAVERAGES, maxRunsWithBestAverages.thenComparing(iplData -> iplData.average));
 
     }
 
-    public String analyseIPLData(SortField sortField, String csvFilePath) throws IOException {
-        List iplCricketersList = new IPLCSVLoader().loadIPLData(csvFilePath);
-        List sortedList = sortList(sortField, iplCricketersList);
-        String sortedStateCensus = new Gson().toJson(sortedList);
-        return sortedStateCensus;
+    public List analyseIPLData(IPLAnalyser.BatsOrBall gameFact, String csvFilePath) {
+        try {
+         return new IPLLoaderAdapter().loadCensusData(gameFact, csvFilePath);
+        } catch (CSVBuilderException e) {
+            throw new CSVBuilderException("Unable To Load Data", CSVBuilderException.ExceptionType.UNABLE_TO_PARSE);
+        }
     }
 
-    public List sortList(SortField sortField, List iplCricketersList) {
-        return (List) iplCricketersList.stream()
+    public String sortListAndConvertJson(SortField sortField, List iplCricketersList) {
+       return new Gson().toJson(iplCricketersList.stream()
                 .sorted(this.sortMap.get(sortField).reversed())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 }
