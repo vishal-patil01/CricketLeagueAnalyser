@@ -20,7 +20,7 @@ public class IPLTest {
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmanHavingTopBattingAverages() {
         List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.AVG,cricketersList);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.AVG, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("MS Dhoni", censusCSV[0].player);
     }
@@ -28,77 +28,96 @@ public class IPLTest {
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenHavingTopStrikingRates() {
         List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES,cricketersList);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("Ishant Sharma", censusCSV[0].player);
     }
 
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenWhoHitsMaximumSixFour() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.SIXFOURS,cricketersList);
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.SIXFOURS, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("Andre Russell", censusCSV[0].player);
     }
 
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenWhoHaveMaximumStrikingRateWithSixFour() {
-        List cricketersList =   iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.MAXSTRIKERATE_WITH_SIXFOUR,cricketersList);
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.MAXSTRIKERATE_WITH_SIXFOUR, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("Andre Russell", censusCSV[0].player);
     }
 
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenWhoHaveBestAvgAndStrikeRates() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.BESTAVERAGE_WITH_STRIKERATE,cricketersList);
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.BESTAVERAGE_WITH_STRIKERATE, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("MS Dhoni", censusCSV[0].player);
     }
 
     @Test
     public void givenIplCSVFile_ShouldReturn_BatsmenWhoHitsMaxRunsWithBestAverage() {
-        List cricketersList =   iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.MAXRUNS_WITH_BESTAVERAGES,cricketersList);
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BATTING, IPL_2019_FACTSHEET_MOST_RUNS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.MAXRUNS_WITH_BESTAVERAGES, cricketersList);
         IPLDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLDTO[].class);
         Assert.assertEquals("David Warner ", censusCSV[0].player);
     }
 
     @Test
     public void givenIplCSVFile_ShouldReturn_PlayerHavingTopBowlingAverage() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.AVG,cricketersList);
-        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
-    }
-    @Test
-    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopStrikingRate() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES,cricketersList);
-        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
-    }
-    @Test
-    public void givenIplCSVFile_ShouldReturn_PlayerHavingBestEconomyRate() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.ECONOMYRATE,cricketersList);
-        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals("Ben Cutting", censusCSV[0].player);
-    }
-    @Test
-    public void givenIplCSVFile_ShouldReturn_PlayerHavingBestStrikingRateWithWickets() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.MAXWICKETS_WITH_STRIKERATE,cricketersList);
-        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
-        Assert.assertEquals("Lasith Malinga", censusCSV[0].player);
-    }
-    @Test
-    public void givenIplCSVFile_ShouldReturn_PlayerHavingGreatAvgWithBestStrikeRate() {
-        List cricketersList =  iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
-        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.BESTAVERAGE_WITH_STRIKERATE,cricketersList);
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.AVG, cricketersList);
         IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
         Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
     }
 
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingTopStrikingRate() {
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.STRIKINGRATES, cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
+
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingBestEconomyRate() {
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.ECONOMYRATE, cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Ben Cutting", censusCSV[0].player);
+    }
+
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingBestStrikingRateWithWickets() {
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.WICKETS4AND6_WITH_STRIKERATE, cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Lasith Malinga", censusCSV[0].player);
+    }
+
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerHavingGreatAvgWithBestStrikeRate() {
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.BESTAVERAGE_WITH_STRIKERATE, cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
+
+    @Test
+    public void givenIplCSVFile_ShouldReturn_PlayerWithMaxWicketsAndBowlingAverage() {
+        List cricketersList = iplAnalyser.analyseIPLData(IPLAnalyser.BatsOrBall.BALLING, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        String cricketersDataInJson = iplAnalyser.sortListAndConvertJson(SortField.WICKETS_WITH_STRIKERATE, cricketersList);
+        IPLMostWktsCSV[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLMostWktsCSV[].class);
+        Assert.assertEquals("Imran Tahir", censusCSV[0].player);
+    }
+
+    @Test
+    public void givenIplRunsAndWicketsCSVFiles_ShouldReturn_AllRounderPlayerWithMaxBattingAndBowlingAverage() {
+        String cricketersDataInJson = iplAnalyser.analyseIPLData(SortField.ALLROUNDERAVG, IPL_2019_FACTSHEET_MOST_RUNS_CSV, IPL_2019_FACTSHEET_MOST_WKTS_CSV);
+        IPLAllRoundersDTO[] censusCSV = new Gson().fromJson(cricketersDataInJson, IPLAllRoundersDTO[].class);
+        Assert.assertEquals("Krishnappa Gowtham", censusCSV[0].player);
+    }
 }
+

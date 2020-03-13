@@ -17,7 +17,8 @@ public class IPLLoaderAdapter {
         List csvFileList = new ArrayList();
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            Iterator<E> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, IPLFactory.getIPLCSVClass(gameFact));
+            Class iplCSVClass = IPLFactory.getIPLCSVClass(gameFact);
+            Iterator<E> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, iplCSVClass);
             Iterable<E> csvIterable = () -> censusCSVIterator;
             if (gameFact.equals(IPLAnalyser.BatsOrBall.BATTING)) {
                 StreamSupport.stream(csvIterable.spliterator(), false)
@@ -28,6 +29,7 @@ public class IPLLoaderAdapter {
                         .map(IPLMostWktsCSV.class::cast)
                         .forEach(censusCSV -> csvFileList.add( new IPLDTO(censusCSV)));
             }
+
             return csvFileList;
         } catch (IOException e) {
             throw new CSVBuilderException(e.getMessage(),

@@ -9,6 +9,7 @@ public class IPLDTO {
     public double economyRate;
     public double wicket4;
     public double wicket5;
+    public double wicket;
 
     public IPLDTO(IPLMostRunsCSV iplFactsCSV) {
         player = iplFactsCSV.player;
@@ -25,5 +26,6 @@ public class IPLDTO {
         economyRate=iplFactsCSV.economyRate;
         wicket4=iplFactsCSV.wicket4;
         wicket5=iplFactsCSV.wicket5;
+        wicket=iplFactsCSV.wicket;
     }
 }

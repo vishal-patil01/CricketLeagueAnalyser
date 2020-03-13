@@ -19,4 +19,8 @@ public class IPLMostWktsCSV {
 
     @CsvBindByName(column = "5W", required = true)
     public double wicket5;
+
+    @CsvBindByName(column = "Wkts", required = true)
+    public double wicket;
+
 }
