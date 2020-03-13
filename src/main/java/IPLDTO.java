@@ -28,4 +28,8 @@ public class IPLDTO {
         wicket5=iplFactsCSV.wicket5;
         wicket=iplFactsCSV.wicket;
     }
+    public IPLDTO(String player, double average) {
+        this.player = player;
+        this.average = average;
+    }
 }

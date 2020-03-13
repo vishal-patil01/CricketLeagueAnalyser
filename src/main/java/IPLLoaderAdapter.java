@@ -13,7 +13,7 @@ import java.util.stream.StreamSupport;
 
 public class IPLLoaderAdapter {
 
-    public <E> List loadCensusData(IPLAnalyser.BatsOrBall gameFact,String csvFilePath) {
+    public <E> List loadIPLData(IPLAnalyser.BatsOrBall gameFact, String csvFilePath) {
         List csvFileList = new ArrayList();
         try (Reader reader = Files.newBufferedReader(Paths.get(csvFilePath))) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
@@ -29,11 +29,14 @@ public class IPLLoaderAdapter {
                         .map(IPLMostWktsCSV.class::cast)
                         .forEach(censusCSV -> csvFileList.add( new IPLDTO(censusCSV)));
             }
-
             return csvFileList;
         } catch (IOException e) {
             throw new CSVBuilderException(e.getMessage(),
                     CSVBuilderException.ExceptionType.UNABLE_TO_PARSE);
+        }
+        catch (RuntimeException e) {
+            throw new CSVBuilderException(e.getMessage(),
+                    CSVBuilderException.ExceptionType.ERROR_CAPTURING_CSV_HEADER);
         }
     }
 }
